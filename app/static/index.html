@@ -43,10 +43,11 @@
   <main>
     <h1>Helpdesk RAG</h1>
     <p class="sub">Ask an IT-helpdesk question. Answers are grounded in the docs and cited;
-       out-of-scope questions are refused.</p>
+       out-of-scope questions are refused.
+       A public demo key is prefilled (shared and rate-limited) so you can try it right away.</p>
 
     <div class="keyrow">
-      <input id="key" type="password" placeholder="X-API-Key (paste your key)" autocomplete="off" />
+      <input id="key" type="password" placeholder="X-API-Key (demo key prefilled)" autocomplete="off" />
     </div>
 
     <div class="askrow">
@@ -64,13 +65,16 @@
     const keyEl = $("key"), qEl = $("q"), sendEl = $("send");
     const answerEl = $("answer"), metaEl = $("meta"), sourcesEl = $("sources");
 
-    // Remember the key locally so you don't re-paste it each reload (demo only).
-    keyEl.value = localStorage.getItem("apiKey") || "";
+    // A public demo key is prefilled so the live page is self-serve. It is shared
+    // and rate-limited server-side; replace it with your own if you run your own
+    // instance. A key saved locally (yours) takes precedence over the demo key.
+    const DEMO_KEY = "hk_eAcKeBSlta8MhhinslL0crnL0TRpcZQj";
+    keyEl.value = localStorage.getItem("apiKey") || DEMO_KEY;
     keyEl.addEventListener("change", () => localStorage.setItem("apiKey", keyEl.value));
 
     async function ask() {
       const question = qEl.value.trim();
-      const key = keyEl.value.trim();
+      const key = keyEl.value.trim() || DEMO_KEY;   // fall back to the demo key
       if (!question) return;
 
       // reset UI

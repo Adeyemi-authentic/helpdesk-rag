@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Helpdesk RAG</title>
+  <style>
+    :root { --bg:#0f1117; --panel:#1a1d27; --line:#2a2e3a; --text:#e6e8ee;
+            --muted:#9aa3b2; --accent:#5b8cff; --warn:#e0a93c; }
+    * { box-sizing: border-box; }
+    body { margin:0; font:15px/1.5 system-ui, sans-serif; background:var(--bg);
+           color:var(--text); display:flex; justify-content:center; }
+    main { width:100%; max-width:760px; padding:24px 18px 60px; }
+    h1 { font-size:20px; margin:0 0 4px; }
+    .sub { color:var(--muted); font-size:13px; margin:0 0 18px; }
+    .keyrow { display:flex; gap:8px; margin-bottom:14px; }
+    .keyrow input { flex:1; }
+    input, textarea, button {
+      font:inherit; color:var(--text); background:var(--panel);
+      border:1px solid var(--line); border-radius:8px; padding:10px 12px; }
+    textarea { width:100%; resize:vertical; min-height:64px; }
+    .askrow { display:flex; gap:8px; margin:10px 0 18px; }
+    .askrow textarea { flex:1; min-height:48px; }
+    button { background:var(--accent); border-color:var(--accent); color:#fff;
+             cursor:pointer; font-weight:600; }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    .answer { background:var(--panel); border:1px solid var(--line);
+              border-radius:10px; padding:16px; min-height:48px; white-space:pre-wrap; }
+    .meta { color:var(--muted); font-size:12px; margin:10px 0 4px; }
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px;
+             border:1px solid var(--line); margin-right:6px; }
+    .badge.warn { color:var(--warn); border-color:var(--warn); }
+    .sources { margin-top:8px; padding-left:0; list-style:none; }
+    .sources li { background:var(--panel); border:1px solid var(--line);
+                  border-radius:8px; padding:8px 10px; margin-bottom:6px; font-size:13px; }
+    .sources .n { color:var(--accent); font-weight:700; margin-right:6px; }
+    .sources .title { color:var(--muted); }
+    .sources .quote { display:block; margin-top:3px; color:var(--text); }
+    .err { color:#ff7a7a; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Helpdesk RAG</h1>
+    <p class="sub">Ask an IT-helpdesk question. Answers are grounded in the docs and cited;
+       out-of-scope questions are refused.</p>
+
+    <div class="keyrow">
+      <input id="key" type="password" placeholder="X-API-Key (paste your key)" autocomplete="off" />
+    </div>
+
+    <div class="askrow">
+      <textarea id="q" placeholder="e.g. How do I install the VPN client on a personal device?"></textarea>
+      <button id="send">Ask</button>
+    </div>
+
+    <div id="answer" class="answer">Your answer will stream here.</div>
+    <div id="meta" class="meta"></div>
+    <ul id="sources" class="sources"></ul>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const keyEl = $("key"), qEl = $("q"), sendEl = $("send");
+    const answerEl = $("answer"), metaEl = $("meta"), sourcesEl = $("sources");
+
+    // Remember the key locally so you don't re-paste it each reload (demo only).
+    keyEl.value = localStorage.getItem("apiKey") || "";
+    keyEl.addEventListener("change", () => localStorage.setItem("apiKey", keyEl.value));
+
+    async function ask() {
+      const question = qEl.value.trim();
+      const key = keyEl.value.trim();
+      if (!question) return;
+
+      // reset UI
+      answerEl.textContent = "";
+      answerEl.classList.remove("err");
+      metaEl.textContent = "";
+      sourcesEl.innerHTML = "";
+      sendEl.disabled = true;
+
+      let resp;
+      try {
+        // fetch() + POST so we can send a JSON body AND the X-API-Key header --
+        // EventSource can do neither.
+        resp = await fetch("/chat/stream", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-API-Key": key },
+          body: JSON.stringify({ question }),
+        });
+      } catch (e) {
+        return fail("Network error: " + e.message);
+      }
+
+      // Auth / rate-limit / validation errors come back as plain JSON, not SSE.
+      if (!resp.ok) {
+        let msg = "Request failed (HTTP " + resp.status + ")";
+        try { const j = await resp.json(); msg = j.error || j.detail || msg; } catch {}
+        return fail(msg);
+      }
+
+      // Read the SSE stream by hand: pull bytes, decode, split on the \n\n frame
+      // boundary. A frame may split across reads, so we keep a buffer.
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        let idx;
+        while ((idx = buffer.indexOf("\n\n")) >= 0) {
+          const frame = buffer.slice(0, idx);
+          buffer = buffer.slice(idx + 2);
+          if (!frame.startsWith("data: ")) continue;
+          handleEvent(JSON.parse(frame.slice(6)));
+        }
+      }
+      sendEl.disabled = false;
+    }
+
+    function handleEvent(ev) {
+      if (ev.type === "token") {
+        answerEl.textContent += ev.text;            // append live
+      } else if (ev.type === "done") {
+        renderMeta(ev);
+        renderSources(ev.citations || []);
+      }
+    }
+
+    function renderMeta(ev) {
+      const badges = [];
+      if (ev.gated) badges.push(`<span class="badge warn">refused (out of scope)</span>`);
+      else if (ev.flagged) badges.push(`<span class="badge warn">low coverage</span>`);
+      else badges.push(`<span class="badge">grounded</span>`);
+      badges.push(`<span class="badge">top score ${ev.top_score.toFixed(3)}</span>`);
+      if (!ev.gated) badges.push(`<span class="badge">coverage ${(ev.coverage*100).toFixed(0)}%</span>`);
+      metaEl.innerHTML = badges.join("");
+    }
+
+    function renderSources(citations) {
+      if (!citations.length) return;
+      const head = document.createElement("li");
+      head.style.background = "transparent";
+      head.style.border = "none";
+      head.style.padding = "4px 0";
+      head.innerHTML = "<strong>Sources</strong>";
+      sourcesEl.appendChild(head);
+      for (const c of citations) {
+        const li = document.createElement("li");
+        li.innerHTML =
+          `<span class="n">[${c.n}]</span><span class="title">${escapeHtml(c.title)}</span>` +
+          `<span class="quote">"${escapeHtml(c.quote)}"</span>`;
+        sourcesEl.appendChild(li);
+      }
+    }
+
+    function fail(msg) {
+      answerEl.classList.add("err");
+      answerEl.textContent = msg;
+      sendEl.disabled = false;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) =>
+        ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+    }
+
+    sendEl.addEventListener("click", ask);
+    qEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) ask();   // Cmd/Ctrl+Enter
+    });
+  </script>
+</body>
+</html>

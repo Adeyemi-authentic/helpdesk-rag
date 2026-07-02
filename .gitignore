@@ -1,0 +1,10 @@
+# Secrets -- never commit
+.env
+
+# Local Qdrant index (rebuild with: python rag/engine.py build)
+rag/index_data/
+
+# Python
+.venv/
+__pycache__/
+*.pyc

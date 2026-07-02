@@ -1,0 +1,19 @@
+Printer and Printing Guide
+
+Most office printers are shared over the network, so you do not need to install anything to use them. Pick the printer nearest your desk from the company print queue, send your document, and tap your staff badge on the reader to release the job. Jobs that are not released within four hours are deleted automatically to protect confidential documents.
+
+Adding a network printer
+
+To add a printer manually, open Settings, choose Printers and scanners, and select Add a printer. Wait for the company printers to appear in the list and choose the one matching the label on the device. If it does not appear, make sure you are connected to the office network or the VPN, because the print servers are not reachable from the open internet.
+
+Fixing the shared printer error 0x0000011b
+
+If you try to connect to a shared printer and the connection fails with error 0x0000011b, this is caused by a Windows security update that changed how print spooling works. The fix is to install the latest Windows updates from the IT self-service portal and restart the machine. Do not disable the update as a workaround, because it closes a serious security hole. If the error continues after updating, the print server itself may need a registry change, so raise a ticket.
+
+Poor print quality
+
+Faded text, streaks, or banding usually mean the toner is low or the print heads need cleaning. Run the printer's built-in cleaning cycle from its front panel first. If quality does not improve, report the device asset tag to the service desk so facilities can replace the toner cartridge.
+
+Getting more help
+
+For any printing problem you cannot resolve, raise a ticket in the IT portal under the Printing category, or call the 24-hour service desk on extension 4357.

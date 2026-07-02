@@ -1,0 +1,186 @@
+{
+  "my vpn keeps dropping when I work from a hotel": {
+    "refused": false,
+    "gated": false,
+    "top_score": 0.56640625,
+    "text": "If GlobalProtect hangs on Connecting, you should switch from Wi-Fi to a wired connection or a mobile hotspot, as some hotel and cafe networks block VPN traffic.\n\nAdditionally, the single most common fix is to fully quit GlobalProtect from the system tray and reopen it, which clears a stale session.\n\nIf these steps don't resolve the issue, raise a ticket in the IT portal under the Network category and include a screenshot of the error.",
+    "coverage": 0.867579908675799,
+    "citations": [
+      {
+        "n": 1,
+        "title": "vpn_guide.txt",
+        "quote": "If GlobalProtect hangs on Connecting, switch from Wi-Fi to a wired connection or a mobile hotspot, as some hotel and cafe networks block VPN traffic."
+      },
+      {
+        "n": 1,
+        "title": "vpn_guide.txt",
+        "quote": "The single most common fix is to fully quit GlobalProtect from the system tray and reopen it, which clears a stale session."
+      },
+      {
+        "n": 3,
+        "title": "vpn_guide.txt",
+        "quote": "Getting more help If none of the above resolves the issue, raise a ticket in the IT portal under the Network category and include a screenshot of the error."
+      }
+    ]
+  },
+  "I'm locked out after too many wrong password tries": {
+    "refused": false,
+    "gated": false,
+    "top_score": 0.60546875,
+    "text": "After five failed sign-in attempts your account is locked for fifteen minutes as a security measure. \n\nYou have two options to regain access:\n\n1. You can wait for the lock to clear on its own, or call the service desk on extension 4357 to have it unlocked immediately.\n\nA locked account is not the same as an expired password, so check which message you are seeing before raising a ticket.",
+    "coverage": 0.8766066838046273,
+    "citations": [
+      {
+        "n": 1,
+        "title": "password_guide.txt",
+        "quote": "Unlocking a locked account After five failed sign-in attempts your account is locked for fifteen minutes as a security measure."
+      },
+      {
+        "n": 1,
+        "title": "password_guide.txt",
+        "quote": "You can wait for the lock to clear on its own, or call the service desk on extension 4357 to have it unlocked immediately."
+      },
+      {
+        "n": 1,
+        "title": "password_guide.txt",
+        "quote": "A locked account is not the same as an expired password, so check which message you are seeing before raising a ticket."
+      }
+    ]
+  },
+  "the shared printer throws an error when I connect": {
+    "refused": false,
+    "gated": false,
+    "top_score": 0.72265625,
+    "text": "If you're connecting to a shared printer and the connection fails with error 0x0000011b, this is caused by a Windows security update that changed how print spooling works.\n\nHere are the steps to resolve this:\n\n1. Install the latest Windows updates from the IT self-service portal and restart the machine.\n\n2. Do not disable the update as a workaround, because it closes a serious security hole.\n\n3. If the error continues after updating, the print server itself may need a registry change, so raise a ticket.",
+    "coverage": 0.8976377952755905,
+    "citations": [
+      {
+        "n": 1,
+        "title": "printer_guide.txt",
+        "quote": "Fixing the shared printer error 0x0000011b If you try to connect to a shared printer and the connection fails with error 0x0000011b, this is caused by a Windows security update that changed how print spooling works."
+      },
+      {
+        "n": 1,
+        "title": "printer_guide.txt",
+        "quote": "The fix is to install the latest Windows updates from the IT self-service portal and restart the machine."
+      },
+      {
+        "n": 1,
+        "title": "printer_guide.txt",
+        "quote": "Do not disable the update as a workaround, because it closes a serious security hole."
+      },
+      {
+        "n": 1,
+        "title": "printer_guide.txt",
+        "quote": "If the error continues after updating, the print server itself may need a registry change, so raise a ticket."
+      }
+    ]
+  },
+  "outlook won't send, it says my mailbox is full": {
+    "refused": false,
+    "gated": false,
+    "top_score": 0.6328125,
+    "text": "Your mailbox has a fifty gigabyte limit, and once you reach it you can no longer send mail.\n\nTo fix this issue, the fastest fix is to empty the Deleted Items folder and then archive old messages using the Archive button, which moves them out of your mailbox while keeping them searchable. Large attachments are the usual cause, so sort by size to find them quickly.",
+    "coverage": 0.9397260273972603,
+    "citations": [
+      {
+        "n": 2,
+        "title": "email_guide.txt",
+        "quote": "Mailbox is full Each mailbox has a fifty gigabyte limit. When you are near the limit you will receive warning emails, and once you reach it you can no longer send mail."
+      },
+      {
+        "n": 2,
+        "title": "email_guide.txt",
+        "quote": "The fastest fix is to empty the Deleted Items folder and then archive old messages using the Archive button, which moves them out of your mailbox while keeping them searchable."
+      },
+      {
+        "n": 2,
+        "title": "email_guide.txt",
+        "quote": "Large attachments are the usual cause, so sort by size to find them quickly."
+      }
+    ]
+  },
+  "I need software that isn't in the company portal": {
+    "refused": false,
+    "gated": false,
+    "top_score": 0.75,
+    "text": "If the software you need is not in the Company Portal, raise a ticket in the IT portal under the Software category and include a business justification and the vendor's website.\n\nThe request goes to your manager for budget approval and then to security for review. Licensed or paid software typically takes three to five business days because of the approval and purchasing steps.",
+    "coverage": 0.9921052631578947,
+    "citations": [
+      {
+        "n": 1,
+        "title": "software_guide.txt",
+        "quote": "d. Requesting software that is not in the catalogue If the software you need is not in the Company Portal, raise a ticket in the IT portal under the Software category and include a business justification and the vendor's website."
+      },
+      {
+        "n": 1,
+        "title": "software_guide.txt",
+        "quote": "The request goes to your manager for budget approval and then to security for review."
+      },
+      {
+        "n": 1,
+        "title": "software_guide.txt",
+        "quote": "Licensed or paid software typically takes three to five business days because of the approval and purchasing steps."
+      }
+    ]
+  },
+  "my laptop dies after an hour off the charger": {
+    "refused": false,
+    "gated": false,
+    "top_score": 0.6328125,
+    "text": "If your battery drains within an hour or will not charge past a certain percentage, it may need replacing. First try a different charger and a different power outlet to rule those out, then raise a ticket so facilities can test or swap the battery.",
+    "coverage": 0.9959677419354839,
+    "citations": [
+      {
+        "n": 1,
+        "title": "laptop_guide.txt",
+        "quote": "If your battery drains within an hour or will not charge past a certain percentage, it may need replacing."
+      },
+      {
+        "n": 1,
+        "title": "laptop_guide.txt",
+        "quote": "First try a different charger and a different power outlet to rule those out, then raise a ticket so facilities can test or swap the battery."
+      }
+    ]
+  },
+  "what is the company holiday schedule for next year": {
+    "refused": true,
+    "gated": true,
+    "top_score": 0.384765625,
+    "text": "I don't know based on the available documentation.",
+    "coverage": 0.0,
+    "citations": []
+  },
+  "how do I change my 401k contribution rate": {
+    "refused": true,
+    "gated": true,
+    "top_score": 0.431640625,
+    "text": "I don't know based on the available documentation.",
+    "coverage": 0.0,
+    "citations": []
+  },
+  "can I expense a taxi from the airport": {
+    "refused": true,
+    "gated": true,
+    "top_score": 0.408203125,
+    "text": "I don't know based on the available documentation.",
+    "coverage": 0.0,
+    "citations": []
+  },
+  "who is the CEO of the company": {
+    "refused": true,
+    "gated": true,
+    "top_score": 0.46875,
+    "text": "I don't know based on the available documentation.",
+    "coverage": 0.0,
+    "citations": []
+  },
+  "what is the capital of France": {
+    "refused": true,
+    "gated": true,
+    "top_score": 0.53125,
+    "text": "I don't know based on the available documentation.",
+    "coverage": 0.0,
+    "citations": []
+  }
+}

@@ -1,0 +1,19 @@
+Software Installation Guide
+
+Company laptops are locked down so that staff cannot install software directly. This protects the network from malware and keeps everyone on supported, licensed versions. Most of the tools you need are already available without any approval through the Company Portal app.
+
+Installing approved software
+
+Open the Company Portal app from the Start menu, browse or search the catalogue, and click Install on the application you need. Common tools such as Chrome, Zoom, and the Adobe Reader are pre-approved and install in a few minutes with no ticket required. The installation runs in the background and the app appears in your Start menu when it is finished.
+
+Requesting software that is not in the catalogue
+
+If the software you need is not in the Company Portal, raise a ticket in the IT portal under the Software category and include a business justification and the vendor's website. The request goes to your manager for budget approval and then to security for review. Licensed or paid software typically takes three to five business days because of the approval and purchasing steps.
+
+Local administrator rights
+
+Standard accounts do not have administrator rights, so installers that demand an admin password will fail. Developers and other staff with a genuine need can request temporary administrator access through a ticket; it is granted for a fixed period and is logged for audit. Never share an admin password or ask a colleague to install something on your behalf.
+
+Removing software
+
+To free up space or remove a tool you no longer use, open the Company Portal, find the app under Installed, and click Uninstall. Do not use the Windows Control Panel to remove company-managed software, as that can leave the device in an unmanaged state and trigger a compliance alert.

@@ -1,0 +1,19 @@
+VPN Access Guide
+
+The company VPN gives you secure access to internal systems when you are working away from the office. All staff are entitled to VPN access, but it must be activated on your device before first use. Access is granted automatically once your account has completed onboarding, so most new starters can connect on day one.
+
+Installing the VPN client
+
+We use GlobalProtect as our VPN client. On a company-managed laptop it is already installed and appears in your system tray. On a personal device, download GlobalProtect from the IT self-service portal and run the installer; do not download it from third-party websites, as those versions are not supported and may be unsafe.
+
+Connecting for the first time
+
+Open GlobalProtect and enter the portal address vpn.company.com. Sign in with your single sign-on credentials, the same username and password you use for email. You will then be prompted to approve a multi-factor authentication request in the Microsoft Authenticator app. Once approved, the status changes to Connected and you can reach internal sites.
+
+Troubleshooting connection problems
+
+If the connection fails with an authentication error, your password may have expired; reset it at the self-service portal and try again. If GlobalProtect hangs on Connecting, switch from Wi-Fi to a wired connection or a mobile hotspot, as some hotel and cafe networks block VPN traffic. The single most common fix is to fully quit GlobalProtect from the system tray and reopen it, which clears a stale session.
+
+Getting more help
+
+If none of the above resolves the issue, raise a ticket in the IT portal under the Network category and include a screenshot of the error. For urgent access issues outside business hours, call the 24-hour service desk on extension 4357.

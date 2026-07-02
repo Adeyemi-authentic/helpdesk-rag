@@ -1,0 +1,19 @@
+Laptop and Hardware Guide
+
+Every member of staff is issued a company laptop during onboarding. The laptop remains company property and must be returned when you leave. Keep it updated and encrypted, and never leave it unattended in a public place such as a car or cafe.
+
+Battery and charging
+
+A healthy laptop battery lasts a full working day. If your battery drains within an hour or will not charge past a certain percentage, it may need replacing. First try a different charger and a different power outlet to rule those out, then raise a ticket so facilities can test or swap the battery.
+
+Slow performance
+
+If your laptop becomes slow, the most common causes are too many browser tabs and pending updates. Restart the machine at least once a week, as many staff never shut down and updates pile up. If it is still slow after a restart and closing unused apps, raise a ticket and include how long the slowness has lasted and what you were doing.
+
+Reporting a lost or stolen laptop
+
+A lost or stolen laptop is a security incident, not just a hardware problem. Report it immediately by calling the 24-hour service desk on extension 4357, even outside business hours, so the device can be remotely locked and wiped. Then raise a ticket so a replacement can be arranged. Because the disk is encrypted, your data cannot be read by whoever finds it.
+
+Requesting accessories
+
+Monitors, docking stations, keyboards, and headsets are available on request. Raise a ticket in the IT portal under the Hardware category. Standard accessories are usually delivered to your desk within two business days; anything non-standard may need manager approval first.

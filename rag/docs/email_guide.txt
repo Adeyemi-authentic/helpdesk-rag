@@ -1,0 +1,19 @@
+Email and Calendar Guide
+
+Your company email runs on Microsoft Outlook and is available in three ways: the desktop Outlook app on a company laptop, the Outlook mobile app on your phone, and Outlook on the web at mail.company.com. All three stay in sync, so a message you read on your phone shows as read on your laptop.
+
+Setting up email on a new phone
+
+Install the Outlook mobile app from your device's app store, open it, and enter your full work email address. You will be redirected to sign in with single sign-on and approve a multi-factor authentication prompt. Do not use the phone's built-in mail app, as it does not meet the company security policy and will be blocked from connecting.
+
+Mailbox is full
+
+Each mailbox has a fifty gigabyte limit. When you are near the limit you will receive warning emails, and once you reach it you can no longer send mail. The fastest fix is to empty the Deleted Items folder and then archive old messages using the Archive button, which moves them out of your mailbox while keeping them searchable. Large attachments are the usual cause, so sort by size to find them quickly.
+
+Recovering a deleted email
+
+Deleted messages sit in the Deleted Items folder for thirty days, so check there first. If you have already emptied that folder, open Recover Deleted Items from the folder menu, which holds messages for a further fourteen days. After that the message is gone permanently and cannot be restored, even by IT.
+
+Shared mailboxes and distribution lists
+
+To request access to a shared mailbox, or to create a distribution list for your team, raise a ticket in the IT portal under the Email category. Include the names of everyone who should have access. Shared mailbox requests are usually completed within one business day.

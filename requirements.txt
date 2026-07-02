@@ -1,0 +1,13 @@
+# Pinned for reproducible builds. Covers the web layer, the RAG engine, and
+# both stores (Qdrant for local dev, pgvector for production).
+fastapi==0.138.0
+uvicorn[standard]==0.49.0
+anthropic==0.109.1
+pydantic==2.13.4
+python-dotenv==1.2.2
+requests==2.34.2
+numpy==2.4.6
+rank-bm25==0.2.2
+qdrant-client==1.18.0
+psycopg[binary]==3.3.4
+pgvector==0.4.2

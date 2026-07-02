@@ -1,0 +1,39 @@
+# The whole stack as one command: the app + its own pgvector database.
+# On any machine with Docker:
+#   docker compose up --build
+# then open http://localhost:8000. Secrets come from a local .env (see .env.example).
+# (In production the app points at a managed pgvector instead of this db service.)
+
+services:
+  db:
+    image: pgvector/pgvector:pg18-trixie
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: helpdesk
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:                       # app waits until the DB actually accepts connections
+      test: ["CMD-SHELL", "pg_isready -U postgres -d helpdesk"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env                           # API keys (NOT the DB url -- overridden below)
+    environment:
+      ENGINE: pg
+      DATABASE_URL: postgresql://postgres:pass@db:5432/helpdesk
+    depends_on:
+      db:
+        condition: service_healthy
+    # Ingest once (idempotent -- skips if already populated), then serve.
+    command: >
+      sh -c "python /code/rag/pg_engine.py build &&
+             uvicorn app:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  pgdata:

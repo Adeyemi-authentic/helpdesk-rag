@@ -16,8 +16,12 @@ hand-wired pipeline) so every mechanism is explicit and tunable. It is wrapped
 in a production FastAPI service (auth, rate limiting, structured errors, CORS),
 backed by **pgvector**, packaged with **Docker**, and deployed to a public URL.
 
-- **Live demo:** <ADD_RENDER_URL>
+- **Live demo:** https://helpdesk-rag.onrender.com
 - **Demo video (2 min):** <ADD_VIDEO_LINK>
+
+> The live demo runs on a free tier that sleeps after ~15 minutes idle, so the
+> first request may take ~30-60s to wake the service. Ask a question in the UI
+> with the API key to see a cited answer stream in.
 
 ## Architecture
 
